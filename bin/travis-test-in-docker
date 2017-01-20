@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IMAGE="quay.io/travisci/travis-jvm:latest"
+IMAGE="quay.io/travisci/travis-jvm:latest-2015-04-28_13-48-40"
 
 # persistent storage to avoid downloading $INTERNET for every run
 mkdir -p caches/{.coursier/cache,.ivy2/cache,.sbt/boot}
