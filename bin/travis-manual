@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e
+
+source /etc/profile
+
+export HUGO_VERSION=0.18
+export LOGBACK_ROOT_LEVEL=OFF
+export SCALAZ_VERSION=7.2.8
+export TRAVIS_SCALA_VERSION=2.12.1
+
+set -x
+
+jdk_switcher use oraclejdk8
+
+export JVM_OPTS=@/etc/sbt/jvmopts
+export SBT_OPTS=@/etc/sbt/sbtopts
+
+mkdir $HOME/bin
+
+export PATH=$HOME/bin:$PATH
+
+mkdir -p $HOME/.sbt/launchers/0.13.13
+
+curl -L -o $HOME/.sbt/launchers/0.13.13/sbt-launch.jar \
+    https://dl.bintray.com/typesafe/ivy-releases/org.scala-sbt/sbt-launch/0.13.8/sbt-launch.jar
+
+echo "Now running as in Travis CI proper..."
+echo
+
+./bin/travis
