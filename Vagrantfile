@@ -3,6 +3,7 @@
 
 DEFAULT_CPU_COUNT = 2
 DEFAULT_MEMORY = 4096
+EXECUTION_CAP = 50
 
 $script = <<SCRIPT
 export DEBIAN_FRONTEND=noninteractive
@@ -46,5 +47,6 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
       vb.cpus = DEFAULT_CPU_COUNT
       vb.memory = DEFAULT_MEMORY
+      vb.customize ["modifyvm", :id, "--cpuexecutioncap", EXECUTION_CAP]
   end
 end
